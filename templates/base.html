@@ -1,0 +1,125 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Default SEO meta, override in child templates if needed -->
+    <meta name="description"
+          content="A blog about Django, Python, and web development." />
+    <meta name="keywords"
+          content="Django, Python, Tailwind, Blog, Web Development" />
+    <title>
+      {% block title %}
+        ABlog
+      {% endblock title %}
+    </title>
+    <!-- Tailwind CSS (built via Vite / Tailwind pipeline) -->
+    {% if debug %}
+      <!-- Dev: Vite dev server -->
+      <link rel="stylesheet" href="https://localhost:5173/style.css" />
+    {% else %}
+      <!-- Prod: Compiled static CSS -->
+      <link rel="stylesheet" href="{% static 'dist/style.css' %}" />
+    {% endif %}
+    {% block style %}
+    {% endblock style %}
+  </head>
+  {# Minimum full-height layout: header + main + footer #}
+  <body class="min-h-screen flex flex-col bg-gray-50 text-gray-900">
+    <!-- NAVBAR (common for all pages) -->
+    <nav class="w-full border-b border-gray-200 bg-white">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <!-- Brand -->
+          <a href="{% url 'home' %}" class="flex items-center gap-2">
+            <span class="text-2xl font-bold">ABlog</span>
+          </a>
+          <!-- Mobile toggle -->
+          <button class="inline-flex items-center justify-center p-2 rounded-md border border-gray-300 text-gray-700 md:hidden"
+                  onclick="document.getElementById('navbar').classList.toggle('hidden')"
+                  aria-label="Toggle navigation">☰</button>
+          <!-- Desktop nav -->
+          <div id="navbar"
+               class="hidden md:flex md:items-center md:gap-4 w-full md:w-auto md:ml-6">
+            <!-- Left links -->
+            <ul class="flex flex-col md:flex-row md:items-center md:gap-4 flex-1 md:flex-none mb-2 md:mb-0">
+              <li>
+                <a href="{% url 'home' %}"
+                   class="block px-2 py-1 text-gray-900 font-semibold"
+                   aria-current="page">Home</a>
+              </li>
+              <li>
+                <a href="#" class="block px-2 py-1 text-gray-700 hover:text-black">Tags</a>
+              </li>
+              <!-- Categories dropdown -->
+              <li class="relative group">
+                <button type="button"
+                        class="flex items-center gap-1 px-2 py-1 text-gray-700 hover:text-black">
+                  Categories
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                <ul class="absolute left-0 mt-2 w-40 rounded-md border border-gray-200 bg-white shadow-md hidden group-hover:block">
+                  {# Example links; replace with dynamic categories #}
+                  {% block categories %}
+                  {% endblock categories %}
+                </ul>
+              </li>
+            </ul>
+            <!-- Search -->
+            <form action="#" method="get" class="flex items-center gap-2 my-1 md:my-0">
+              <input type="text"
+                     name="q"
+                     class="border border-gray-300 rounded-md px-3 py-1 text-sm w-40"
+                     placeholder="Search posts" />
+              <button class="px-3 py-1 text-sm rounded-md border border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white"
+                      type="submit">Search</button>
+            </form>
+            <!-- Auth (conditional in child templates or via context) -->
+            {% if user.is_authenticated %}
+              <p class="ml-3 text-sm font-semibold">{{ user.username }}</p>
+              <a href="#"
+                 class="ml-3 px-4 py-1.5 rounded-md bg-black text-white text-sm">Logout</a>
+            {% else %}
+              <a href="#"
+                 class="ml-2 px-4 py-1.5 rounded-md bg-black text-white text-sm">Login</a>
+              <a href="#"
+                 class="ml-3 px-4 py-1.5 rounded-md bg-black text-white text-sm">Create Account</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!-- MAIN CONTENT -->
+    <main class="flex-1">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        {% block main %}
+        {% endblock main %}
+      </div>
+    </main>
+    <!-- FOOTER (newsletter + copyright) -->
+    <footer class="border-t border-gray-300 bg-white mt-4">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="max-w-md mx-auto">
+          <form class="space-y-3">
+            <div>
+              <h3 class="text-xl font-semibold mb-1">Subscribe to the newsletter.</h3>
+              <p class="text-sm text-gray-500 mb-2">Get the latest posts delivered to your inbox.</p>
+              <label for="newsletterEmail" class="block text-sm font-medium text-gray-700">Email address</label>
+              <input type="email"
+                     id="newsletterEmail"
+                     class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-black" />
+            </div>
+            <button type="submit"
+                    class="inline-flex items-center justify-center px-4 py-2 rounded-md bg-black text-white text-sm hover:bg-gray-900">
+              Submit
+            </button>
+          </form>
+        </div>
+        <p class="mt-6 text-xs text-center text-gray-400">© 2025 ABlog. All rights reserved.</p>
+      </div>
+    </footer>
+  </body>
+</html>

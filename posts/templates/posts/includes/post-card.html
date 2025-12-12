@@ -1,0 +1,22 @@
+<div>
+  <div class="max-w-xl bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden">
+    <div class="grid grid-cols-3 gap-0">
+      <div class="col-span-1">
+        <img src=""
+             alt="Post image"
+             width="300"
+             height="200"
+             class="w-full h-full object-cover bg-gray-100" />
+      </div>
+      <div class="col-span-2">
+        <div class="p-4">
+          <h5 class="text-lg font-bold mb-1">{{ post.title|title }}</h5>
+          <p class="text-sm text-gray-800 mb-1">{{ post.content|truncatewords:5 }}</p>
+          <p class="text-xs text-gray-500 mb-3">5th July, 2025</p>
+          <a href="{% url 'post' post.id %}"
+             class="inline-block px-4 py-1.5 rounded-md bg-black text-white text-sm">Read More</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
