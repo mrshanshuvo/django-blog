@@ -24,14 +24,10 @@ posts = [
     }
 ]
 
-categories = [
-  "Programming",
-  "Food",
-  "Travel"
-]
+
 # Create your views here.
 def home(request):
-  return render(request, 'posts/index.html', {'posts' : posts, "categories": categories})
+  return render(request, 'posts/index.html', {'posts' : posts})
 
 def post(request, id):
   valid_id = False
@@ -41,7 +37,7 @@ def post(request, id):
       valid_id = True
       break
   if valid_id:
-    return render(request, 'posts/post.html', {'post': post_dict, "categories": categories})
+    return render(request, 'posts/post.html', {'post': post_dict})
   else:
     raise Http404()
   

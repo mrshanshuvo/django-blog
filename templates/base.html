@@ -63,8 +63,12 @@
                 </button>
                 <ul class="absolute left-0 mt-2 w-40 rounded-md border border-gray-200 bg-white shadow-md hidden group-hover:block">
                   {# Example links; replace with dynamic categories #}
-                  {% block categories %}
-                  {% endblock categories %}
+                  {% for cat in categories %}
+                    <li>
+                      <a href="#"
+                         class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">{{ cat }}</a>
+                    </li>
+                  {% endfor %}
                 </ul>
               </li>
             </ul>

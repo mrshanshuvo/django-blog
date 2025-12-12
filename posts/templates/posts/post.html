@@ -2,14 +2,6 @@
 {% block title %}
   ABlog - {{ post.title }}
 {% endblock title %}
-{% block categories %}
-  {% for cat in categories %}
-    <li>
-      <a href="#"
-         class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">{{ cat }}</a>
-    </li>
-  {% endfor %}
-{% endblock categories %}
 {% block main %}
   <div class="max-w-5xl mx-auto">
     <!-- Hero image -->
