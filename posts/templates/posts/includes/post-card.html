@@ -10,9 +10,9 @@
       </div>
       <div class="col-span-2">
         <div class="p-4">
-          <h5 class="text-lg font-bold mb-1">{{ post.title|title }}</h5>
-          <p class="text-sm text-gray-800 mb-1">{{ post.content|truncatewords:5 }}</p>
-          <p class="text-xs text-gray-500 mb-3">5th July, 2025</p>
+          <h5 class="text-lg font-bold mb-1">{{ post.post_title|title }}</h5>
+          <p class="text-sm text-gray-800 mb-1">{{ post.post_content|truncatewords:5 }}</p>
+          <p class="text-xs text-gray-500 mb-3">{{ post.published_data }}</p>
           <a href="{% url 'post' post.id %}"
              class="inline-block px-4 py-1.5 rounded-md bg-black text-white text-sm">Read More</a>
         </div>

@@ -11,9 +11,9 @@
          height="80"
          class="w-full max-h-120 object-cover rounded-md bg-gray-100" />
     <!-- Date -->
-    <div class="mt-3 text-center text-sm text-gray-500">{{ post.created_at|date:"j F Y" }}</div>
+    <div class="mt-3 text-center text-sm text-gray-500">{{ post.published_data|date:"j F Y" }}</div>
     <!-- Title -->
-    <h1 class="text-center text-3xl md:text-4xl font-bold my-3">{{ post.title }}</h1>
+    <h1 class="text-center text-3xl md:text-4xl font-bold my-3">{{ post.post_title }}</h1>
     <!-- Tags (replace with real tags if available) -->
     <div class="flex flex-wrap justify-center items-center gap-2 mb-4">
       <a href="#"
@@ -33,7 +33,7 @@
     </div>
     <hr class="border border-gray-400/60 mb-4" />
     <!-- Body -->
-    <p class="text-base leading-relaxed text-gray-800 mb-8">{{ post.content }}</p>
+    <p class="text-base leading-relaxed text-gray-800 mb-8">{{ post.post_content }}</p>
     <!-- COMMENTS -->
     <section class="mb-10">
       <h2 class="text-2xl font-semibold mb-3">Comments</h2>
