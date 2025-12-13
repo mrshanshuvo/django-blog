@@ -6,3 +6,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('posts/', include('posts.urls')),
 ]
+
+admin.site.site_header = "My Blog"
+admin.site.index_title = "My-Blog"
