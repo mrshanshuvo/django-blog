@@ -5,6 +5,7 @@ from posts import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('posts/', include('posts.urls')),
+    path('authors/', include('authors.urls'))
 ]
 
 admin.site.site_header = "My Blog"
