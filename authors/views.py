@@ -28,22 +28,12 @@ def allData(request):
 def update(request, id):
     author = Author.objects.get(id=id)
     if request.method == "POST":
-        form = AuthorsForm(request.POST)
+        form = AuthorsForm(request.POST, instance=author)
         if form.is_valid():
-            author.name = form.cleaned_data["name"]
-            author.email = form.cleaned_data["email"]
-            author.contact_no = form.cleaned_data["contact_no"]
-            author.bio = form.cleaned_data["bio"]
             author.save()
+            return HttpResponseRedirect("/authors/all-data/")
     else:
-        form = AuthorsForm(
-            initial={
-                "name": author.name,
-                "email": author.email,
-                "contact_no": author.contact_no,
-                "bio": author.bio,
-            }
-        )
+        form = AuthorsForm(instance=author)
     return render(request, "authors/update.html", {"form": form})
 
 
