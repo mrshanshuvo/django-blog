@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authors Data</title>
+  </head>
+  <body>
+    {% for author in authors_data %}
+      <a href="{% url 'update' author.id %}">
+        <h1>{{ author.id }}. {{ author.name }}</h1>
+      </a>
+      <form action=" {% url 'delete' author.id %} " method='post'>
+        {% csrf_token %}
+        <button type="submit">Delete</button>
+      </form>
+    {% endfor %}
+  </body>
+</html>
