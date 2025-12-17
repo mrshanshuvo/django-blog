@@ -130,4 +130,4 @@ STATICFILES_DIRS = [BASE_DIR / "static"]
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-SESSION_COOKIE_AGE = 5
+# SESSION_COOKIE_AGE = 5
