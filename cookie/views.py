@@ -4,6 +4,7 @@ from django.http import HttpResponse
 
 # Create your views here.
 def set(request):
+    print("Set view is called")
     response = render(request, "cookie/home.html")
     response.set_cookie("theme", "dark")
     response.set_cookie("mr", "land")
@@ -23,5 +24,5 @@ def delete(request):
 
 def update(request):
     response = HttpResponse("Updated")
-    response.set_cookie("mr", "asdfasdfasdf")
+    response.set_cookie("mr", "ad")
     return response

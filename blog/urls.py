@@ -7,6 +7,7 @@ urlpatterns = [
     path("posts/", include("posts.urls")),
     path("authors/", include("authors.urls")),
     path("learning/", include("cookie.urls")),
+    path("session/", include("sessiontut.urls")),
 ]
 
 admin.site.site_header = "My Blog"
