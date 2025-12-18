@@ -9,6 +9,7 @@ urlpatterns = [
     path("learning/", include("cookie.urls")),
     path("session/", include("sessiontut.urls")),
     path("accounts/", include("accounts.urls")),
+    path("users/", include("django.contrib.auth.urls")),
 ]
 
 admin.site.site_header = "My Blog"
