@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "authors",
     "cookie",
     "sessiontut",
+    "accounts",
 ]
 
 MIDDLEWARE = [
