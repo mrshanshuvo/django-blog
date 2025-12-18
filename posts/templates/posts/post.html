@@ -1,79 +1,70 @@
 {% extends "base.html" %}
 {% block title %}
-  ABlog - {{ post.title }}
+  ABlog - {{ post.post_title }}
 {% endblock title %}
 {% block main %}
-  <div class="max-w-5xl mx-auto">
-    <!-- Hero image -->
-    <img src=""
-         alt="Post image"
-         width="200"
-         height="80"
-         class="w-full max-h-120 object-cover rounded-md bg-gray-100" />
-    <!-- Date -->
-    <div class="mt-3 text-center text-sm text-gray-500">{{ post.published_data|date:"j F Y" }}</div>
-    <!-- Title -->
-    <h1 class="text-center text-3xl md:text-4xl font-bold my-3">{{ post.post_title }}</h1>
-    <!-- Tags (replace with real tags if available) -->
-    <div class="flex flex-wrap justify-center items-center gap-2 mb-4">
-      <a href="#"
-         class="px-3 py-1 rounded-full bg-black/80 text-white text-sm">#python</a>
-      <a href="#"
-         class="px-3 py-1 rounded-full bg-black/80 text-white text-sm">#python</a>
-      <a href="#"
-         class="px-3 py-1 rounded-full bg-blue-600/80 text-white text-sm">#datastructures &amp; algorithms</a>
-      <a href="#"
-         class="px-3 py-1 rounded-full bg-red-600/80 text-white text-sm">#programming</a>
-      <a href="#"
-         class="px-3 py-1 rounded-full bg-green-600/80 text-white text-sm">#software developers</a>
-      <a href="#"
-         class="px-3 py-1 rounded-full bg-black/80 text-white text-sm">#Travel</a>
-      <a href="#"
-         class="px-3 py-1 rounded-full bg-blue-600/80 text-white text-sm">#Food</a>
-    </div>
-    <hr class="border border-gray-400/60 mb-4" />
-    <!-- Body -->
-    <p class="text-base leading-relaxed text-gray-800 mb-8">{{ post.post_content }}</p>
-    <!-- COMMENTS -->
-    <section class="mb-10">
-      <h2 class="text-2xl font-semibold mb-3">Comments</h2>
-      {% if user.is_authenticated %}
-        <!-- Comment form -->
-        <form method="post" class="space-y-3 mb-4">
-          {% csrf_token %}
-          <textarea name="comment"
-                    class="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-black min-h-30"></textarea>
-          <button type="submit"
-                  class="inline-flex items-center justify-center px-4 py-2 rounded-md bg-blue-600 text-white text-sm hover:bg-blue-700">
-            Comment
-          </button>
-        </form>
-      {% else %}
-        <h2 class="inline-block px-3 py-1 rounded-md bg-red-600 text-white text-sm font-semibold mb-4">Login To Comment</h2>
-      {% endif %}
-      <!-- Example single comment card; loop over real comments in your view -->
-      {% for comment in comments %}
-        <div class="mt-4 border border-gray-200 rounded-lg shadow-sm">
-          <div class="p-4">
-            <div class="grid grid-cols-12 gap-3 items-start">
-              <div class="col-span-3 sm:col-span-2">
-                <img src="https://static.vecteezy.com/system/resources/previews/000/550/980/non_2x/user-icon-vector.jpg"
-                     alt="User avatar"
-                     width="64"
-                     height="64"
-                     class="w-16 h-16 rounded-full border border-gray-200 object-cover" />
+  <div class="container my-4">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <!-- Hero image -->
+        <img src=""
+             alt="Post image"
+             width="800"
+             height="400"
+             class="img-fluid rounded bg-light mb-3" />
+        <!-- Date -->
+        <div class="text-center text-muted small mb-2">{{ post.published_data|date:"j F Y" }}</div>
+        <!-- Title -->
+        <h1 class="text-center fw-bold mb-3">{{ post.post_title }}</h1>
+        <hr class="mb-4">
+        <!-- Body -->
+        <p class="fs-6 lh-lg text-body mb-5">{{ post.post_content }}</p>
+        <!-- COMMENTS -->
+        <section class="mb-5">
+          <h2 class="h4 fw-semibold mb-3">Comments</h2>
+          {% if user.is_authenticated %}
+            <!-- Comment form -->
+            <form method="post" class="mb-4">
+              {% csrf_token %}
+              <div class="mb-3">
+                <textarea name="comment"
+                          class="form-control"
+                          rows="3"
+                          placeholder="Write your comment..."></textarea>
               </div>
-              <div class="col-span-9 sm:col-span-10">
-                <h5 class="text-base font-semibold">{{ comment.user.username }}</h5>
-                <p class="text-sm text-gray-800">{{ comment.text }}</p>
-                <p class="mt-1 text-xs text-gray-500">{{ comment.created_at|date:"j M Y H:i" }}</p>
+              <button type="submit" class="btn btn-primary btn-sm">Comment</button>
+            </form>
+          {% else %}
+            <span class="badge bg-danger mb-4 d-inline-block">Login to comment</span>
+          {% endif %}
+          <!-- Comments list -->
+          {% for comment in comments %}
+            <div class="card mb-3">
+              <div class="card-body">
+                <div class="row g-3 align-items-start">
+                  <div class="col-auto">
+                    <img src="https://static.vecteezy.com/system/resources/previews/000/550/980/non_2x/user-icon-vector.jpg"
+                         alt="User avatar"
+                         class="rounded-circle border"
+                         width="64"
+                         height="64" />
+                  </div>
+                  <div class="col">
+                    <h6 class="fw-semibold mb-1">{{ comment.user.username }}</h6>
+                    <p class="mb-1 text-body">{{ comment.text }}</p>
+                    <small class="text-muted">{{ comment.created_at|date:"j M Y H:i" }}</small>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-      {% empty %}
-        <p class="mt-2 text-sm text-gray-600">No comments yet.</p>
-      {% endfor %}
-    </section>
+          {% empty %}
+            <p class="text-muted small">No comments yet.</p>
+          {% endfor %}
+        </section>
+      </div>
+      <!-- col-lg-10 -->
+    </div>
+    <!-- row -->
   </div>
+  <!-- container -->
 {% endblock main %}
