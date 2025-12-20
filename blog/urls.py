@@ -5,11 +5,7 @@ from posts import views
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("posts/", include("posts.urls")),
-    path("authors/", include("authors.urls")),
-    path("learning/", include("cookie.urls")),
-    path("session/", include("sessiontut.urls")),
     path("accounts/", include("accounts.urls")),
-    path("users/", include("django.contrib.auth.urls")),
 ]
 
 admin.site.site_header = "My Blog"

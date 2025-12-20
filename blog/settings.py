@@ -39,11 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "posts",
-    "authors",
-    "cookie",
-    "sessiontut",
     "accounts",
-    "registration",
 ]
 
 MIDDLEWARE = [
@@ -54,8 +50,6 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    # "cookie.middleware.CustomFunctionMiddleware",
-    "cookie.middleware.CustomClassMiddleware",
 ]
 
 ROOT_URLCONF = "blog.urls"
@@ -133,3 +127,7 @@ STATICFILES_DIRS = [BASE_DIR / "static"]
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # SESSION_COOKIE_AGE = 5
+
+# built in auth views from django.conf import settings
+LOGIN_REDIRECT_URL = "/posts/home/"
+LOGOUT_REDIRECT_URL = "/users/login/"
