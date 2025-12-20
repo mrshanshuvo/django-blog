@@ -64,10 +64,12 @@
           <!-- Auth -->
           {% if user.is_authenticated %}
             <span class="me-2 fw-semibold">{{ user.username }}</span>
-            <a href=" {% url 'auth-logout' %} " class="btn btn-sm btn-dark">Logout</a>
+            <form action="{% url 'logout' %}" method="post">
+              {% csrf_token %}
+              <input type="submit" class="btn btn-sm btn-dark" value="Logout">
+            </form>
           {% else %}
-            <a href=" {% url 'auth-login' %} "
-               class="btn btn-sm btn-outline-dark me-2">Login</a>
+            <a href=" {% url 'login' %} " class="btn btn-sm btn-outline-dark me-2">Login</a>
             <a href="{% url 'register' %}" class="btn btn-sm btn-dark">Create Account</a>
           {% endif %}
         </div>

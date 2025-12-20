@@ -130,4 +130,4 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # built in auth views from django.conf import settings
 LOGIN_REDIRECT_URL = "/posts/home/"
-LOGOUT_REDIRECT_URL = "/users/login/"
+LOGOUT_REDIRECT_URL = "/accounts/login/"
