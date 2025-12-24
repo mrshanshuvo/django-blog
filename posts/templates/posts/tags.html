@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block main %}
+  {% for post in tags %}
+    {% include "posts/includes/post-card.html" %}
+  {% endfor %}
+{% endblock main %}
