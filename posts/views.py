@@ -23,12 +23,17 @@ def post(request, id):
         if form.is_valid():
             comment = form.save(commit=False)
             comment.post = post
+            comment.user = request.user
             comment.save()
             postURL = reverse("post", args=[id])
             return HttpResponseRedirect(postURL)
 
     form = CommentForm()
-    return render(request, "posts/post.html", {"post": post, "form": form})
+    return render(
+        request,
+        "posts/post.html",
+        {"post": post, "form": form, "comments": post.comment_set.all()},
+    )
 
 
 def tags(request, id):
