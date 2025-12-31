@@ -129,7 +129,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # SESSION_COOKIE_AGE = 5
 
 # built in auth views from django.conf import settings
-LOGIN_REDIRECT_URL = "/posts/home/"
+LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/accounts/login/"
 
 # MEDIA SETTINGS

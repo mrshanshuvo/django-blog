@@ -7,7 +7,7 @@ from django.contrib.auth import authenticate, login, logout
 
 def register(request):
     if request.user.is_authenticated:
-        return HttpResponseRedirect("/posts/home/")
+        return HttpResponseRedirect("/")
     else:
         if request.method == "POST":
             form = RegisterForm(request.POST)
