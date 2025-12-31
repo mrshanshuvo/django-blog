@@ -5,6 +5,7 @@ from django.core.paginator import Paginator
 from .forms import CommentForm
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.db.models import Q
 
 
 # Create your views here.
@@ -39,3 +40,14 @@ def post(request, id):
 def tags(request, id):
     tag = Tag.objects.get(id=id)
     return render(request, "posts/tags.html", {"tags": tag.post_set.all()})
+
+
+def search(request):
+    q = request.GET.get("q", None)
+    page_number = request.GET.get("p", 1)
+    posts = Post.objects.filter(
+        Q(post_title__icontains=q) | Q(post_content__icontains=q)
+    ).order_by("-id")
+    paginator = Paginator(posts, 4)
+    page_obj = paginator.get_page(page_number)
+    return render(request, "posts/search.html", {"posts": page_obj, "q": q})

@@ -131,3 +131,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # built in auth views from django.conf import settings
 LOGIN_REDIRECT_URL = "/posts/home/"
 LOGOUT_REDIRECT_URL = "/accounts/login/"
+
+# MEDIA SETTINGS
+MEDIA_ROOT = BASE_DIR / "media"
+MEDIA_URL = "/media/"

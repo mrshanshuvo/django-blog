@@ -54,11 +54,11 @@
             </li>
           </ul>
           <!-- Search -->
-          <form class="d-flex me-3" method="get">
+          <form class="d-flex me-3" action='{% url "search" %}' method="get">
             <input class="form-control form-control-sm me-2"
                    type="search"
                    placeholder="Search posts"
-                   name="q" />
+                   name='q' />
             <button class="btn btn-sm btn-outline-dark" type="submit">Search</button>
           </form>
           <!-- Auth -->
